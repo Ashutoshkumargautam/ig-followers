@@ -1,8 +1,8 @@
-from selenium import webdriver
-from time import sleep
-from secrets import pw
+from selenium import webdriver # this is known
+from time import sleep # this is known 
+from secrets import pw # this is for password
 
-
+#starting with bot -------------------------->>>
 class InstaBot:
     def __init__(self, username, pw):
         self.driver = webdriver.Chrome()
@@ -22,7 +22,7 @@ class InstaBot:
         self.driver.find_element_by_xpath("//button[contains(text(), 'Not Now')]")\
             .click()
         sleep(2)
-
+#====================[Here we are complate all login successfully]=================================================>>>
     def get_unfollowers(self):
         self.driver.find_element_by_xpath("//a[contains(@href,'/{}')]".format(self.username))\
             .click()
@@ -46,6 +46,7 @@ class InstaBot:
         while last_ht != ht:
             last_ht = ht
             sleep(1)
+            #-------tricky part of bot ----------------->>
             ht = self.driver.execute_script("""
                 arguments[0].scrollTo(0, arguments[0].scrollHeight); 
                 return arguments[0].scrollHeight;
@@ -55,6 +56,7 @@ class InstaBot:
         # close button
         self.driver.find_element_by_xpath("/html/body/div[3]/div/div[1]/div/div[2]/button")\
             .click()
+        #-------complate------>>
         return names
 
 
